@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Person {
@@ -5,10 +6,20 @@ public class Person {
     //Spara dessa värden i en Lista av Personer som går att söka i
     private int socialSecNumber;
     private String name;
+    private LocalDate dateOfPayment;
 
-    public Person(int socialSecNumber, String name) {
+    public Person(int socialSecNumber, String name, LocalDate dateOfPayment) {
         this.socialSecNumber = socialSecNumber;
         this.name = name;
+        this.dateOfPayment = dateOfPayment;
+    }
+
+    public LocalDate getDateOfPayment() {
+        return dateOfPayment;
+    }
+
+    public void setDateOfPayment(LocalDate dateOfPayment) {
+        this.dateOfPayment = dateOfPayment;
     }
 
     public int getSocialSecNumber() {

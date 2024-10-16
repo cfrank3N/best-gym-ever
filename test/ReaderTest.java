@@ -2,7 +2,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.LinkedList;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
@@ -11,6 +11,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ReaderTest {
 
     Reader r = new Reader();
+
+    //TODO: Testa setter och getter för lista fileData
 
     @Test
     public void testFromFile() {
@@ -29,6 +31,15 @@ public class ReaderTest {
 
        assertEquals("7703021234",s[0]);
        assertEquals("Alhambra Aromes",s[1]);
+    }
+
+    @Test
+    public void testParseStringToDate() {
+        String date = "2024-08-04";
+        LocalDate ld = LocalDate.of(2024, 8, 4);
+        LocalDate localDate = r.parseStringToDate(date);
+        System.out.println(ld);
+        assertEquals(ld, localDate);
     }
 
 }
