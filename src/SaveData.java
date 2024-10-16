@@ -6,10 +6,10 @@ public class SaveData {
 
     private List <Person> persons = new LinkedList<>();
     private List <String> fileData = new LinkedList<>();
-    private final Reader read = new Reader();
+    private final Reader read = new Reader("./src/data.txt");
 
     public void saveDataFromFile() {
-        setFileData(read.readFromFile("./src/data.txt"));
+        setFileData(read.readFromFile());
     }
 
     public void savePersons() throws DateTimeParseException {

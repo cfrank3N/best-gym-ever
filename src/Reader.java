@@ -10,11 +10,17 @@ import java.util.regex.PatternSyntaxException;
 //Tänk bakvägen, vad behöver hända först?
 public class Reader {
 
-    public List <String> readFromFile(String fileName) {
+    private final String file;
+
+    public Reader(String file) {
+        this.file = file;
+    }
+
+    public List <String> readFromFile() {
         //String att returnera
         List<String> s = new LinkedList<>();
         //Try with resources
-        try (Scanner scan = new Scanner(new File(fileName))) {
+        try (Scanner scan = new Scanner(new File(file))) {
             while (scan.hasNextLine()) {
                 s.add(scan.nextLine().trim());
             }

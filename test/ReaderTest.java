@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -11,13 +12,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ReaderTest {
 
-    Reader r = new Reader();
+    Reader r = new Reader("./test/data.txt");
 
     //TODO: Testa setter och getter för lista fileData
 
     @Test
     public void testFromFile() {
-        List <String> s = r.readFromFile("./test/data.txt");
+        List <String> s = r.readFromFile();
 
         assertEquals("7703021234, Alhambra Aromes", s.getFirst());
         assertEquals("2019-12-02", s.get(3));
