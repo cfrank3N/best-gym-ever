@@ -1,12 +1,23 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.LinkedList;
 import java.util.List;
 
 public class SaveData {
 
+    private final String READ_FROM;
+    private final String WRITE_TO;
     private List <Person> persons = new LinkedList<>();
     private List <String> fileData = new LinkedList<>();
+    private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private final Reader read = new Reader("./src/data.txt");
+    private final Writer write = new Writer("./src/visitor-log.txt");
+
+    public SaveData(String readFrom, String writeTo) {
+        this.READ_FROM = readFrom;
+        this.WRITE_TO = writeTo;
+    }
 
     public void saveDataFromFile() {
         setFileData(read.readFromFile());
@@ -28,7 +39,17 @@ public class SaveData {
         }
     }
 
+    private static String getTodaysDateString() {
+        return LocalDate.now().format(dtf);
+    }
+
     //TODO: Skriv en metod som skriver en person till fil
+    public void writePersonToFile(Person p) {
+        String toWrite = String.format("Namn: %s Personnummer: %s Datum för besök: %s",
+                p.getName(), p.getSocialSecNumber(), getTodaysDateString());
+
+        write.writeToFile(toWrite);
+    }
     //pw.println(String.format("Namn: %s Personnummer: %s Datum för besök: %s", p.getName(), p.getSocialSecNumber(), getTodaysDateString()));
 
     public List<Person> getPersons() {

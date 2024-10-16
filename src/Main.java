@@ -2,6 +2,7 @@ import java.time.format.DateTimeParseException;
 
 public class Main {
     public static void main(String[] args) {
+        /*
         Comparer c = new Comparer();
         SaveData s = new SaveData();
 
@@ -17,6 +18,6 @@ public class Main {
             System.out.println(p);
             System.out.println(c.dateIsLessThanAYearAgo(p.getDateOfPayment()));
         }
-
+        */
     }
 }

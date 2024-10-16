@@ -1,5 +1,4 @@
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class Person {
     //Skapa nya personer av värdena som läses in från filen

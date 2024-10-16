@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 public class WriterTest {
 
     final String TEST_FILE_NAME = "test.txt";
-    Writer w = new Writer();
+    Writer w = new Writer(TEST_FILE_NAME);
     Reader r = new Reader(TEST_FILE_NAME);
 
     @AfterEach
@@ -30,9 +30,9 @@ public class WriterTest {
 
         List <String> expectedContent = Arrays.asList("Hej", "Hejdå", "Felix");
 
-        w.writeToFile("test.txt", "Hej");
-        w.writeToFile("test.txt", "Hejdå");
-        w.writeToFile("test.txt", "Felix");
+        w.writeToFile("Hej");
+        w.writeToFile("Hejdå");
+        w.writeToFile("Felix");
 
         List<String> written = r.readFromFile();
 

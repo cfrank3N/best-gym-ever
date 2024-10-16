@@ -12,14 +12,15 @@ public class ComparerTest {
     @Test
     public void testCompareDates() {
 
-        //Skapa upp datum att testa:
-
+        //Skapa upp ett objekt som formaterar om ett satum till yyyy-MM-dd
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
+        //Skapa upp datum att testa med
         LocalDate ld1 =
-                LocalDate.parse(LocalDate.now().minusYears(0).minusMonths(2).minusDays(45).format(dtf));
+                LocalDate.parse(LocalDate.now().minusMonths(2).minusDays(45).format(dtf));
+
         LocalDate ld2 =
-                LocalDate.parse(LocalDate.now().minusYears(1).minusMonths(2).minusDays(15).format(dtf));
+                LocalDate.parse(LocalDate.now().minusYears(1).minusMonths(2).format(dtf));
+
         LocalDate ld3 =
                 LocalDate.parse(LocalDate.now().minusYears(1).format(dtf));
 
