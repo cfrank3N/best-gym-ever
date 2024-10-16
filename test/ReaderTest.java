@@ -3,6 +3,7 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -37,9 +38,11 @@ public class ReaderTest {
     public void testParseStringToDate() {
         String date = "2024-08-04";
         LocalDate ld = LocalDate.of(2024, 8, 4);
+        LocalDate ld2 = LocalDate.of(2025, 8, 4);
         LocalDate localDate = r.parseStringToDate(date);
-        System.out.println(ld);
         assertEquals(ld, localDate);
+        assertThrows(DateTimeParseException.class, () -> LocalDate.parse("abc"));
+        assertNotEquals(ld2, localDate);
     }
 
 }
