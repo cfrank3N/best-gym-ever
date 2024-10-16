@@ -6,17 +6,19 @@ import java.util.List;
 
 public class SaveData {
 
-    private final String READ_FROM;
-    private final String WRITE_TO;
     private List <Person> persons = new LinkedList<>();
     private List <String> fileData = new LinkedList<>();
-    private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    private final Reader read = new Reader("./src/data.txt");
-    private final Writer write = new Writer("./src/visitor-log.txt");
+    private final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private final Reader read;
+    private final Writer write;
 
     public SaveData(String readFrom, String writeTo) {
-        this.READ_FROM = readFrom;
-        this.WRITE_TO = writeTo;
+        this.read = new Reader(readFrom);
+        this.write = new Writer(writeTo);
+
+        saveDataFromFile();
+        savePersons();
+
     }
 
     public void saveDataFromFile() {
@@ -39,18 +41,17 @@ public class SaveData {
         }
     }
 
-    private static String getTodaysDateString() {
+    private String getTodaysDateString() {
         return LocalDate.now().format(dtf);
     }
 
     //TODO: Skriv en metod som skriver en person till fil
     public void writePersonToFile(Person p) {
-        String toWrite = String.format("Namn: %s Personnummer: %s Datum för besök: %s",
-                p.getName(), p.getSocialSecNumber(), getTodaysDateString());
+        String toWrite = String.format("%-7s %-18s %-15s %-13s %-18s %-15s", "Namn:",
+                p.getName(), "Personnummer:", p.getSocialSecNumber(), "Datum för besök:", getTodaysDateString());
 
         write.writeToFile(toWrite);
     }
-    //pw.println(String.format("Namn: %s Personnummer: %s Datum för besök: %s", p.getName(), p.getSocialSecNumber(), getTodaysDateString()));
 
     public List<Person> getPersons() {
         return persons;
