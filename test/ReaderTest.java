@@ -30,27 +30,4 @@ public class ReaderTest {
         assertIterableEquals(s, expectedContent);
         assertThrows(FileNotFoundException.class, () -> new Scanner(new File("Hej.txt")));
     }
-
-    @Test
-    public void testSplitString() {
-        String[] expectedContent = {"7703021234", "Alhambra Aromes"};
-        String[] s = r.splitString("7703021234, Alhambra Aromes", ", ");
-
-        assertArrayEquals(s, expectedContent);
-    }
-
-    @Test
-    public void testParseStringToDate() {
-
-        LocalDate ld = LocalDate.of(2024, 8, 4);
-        LocalDate ld2 = LocalDate.of(2025, 8, 4);
-
-        String date = "2024-08-04";
-        LocalDate localDate = r.parseStringToDate(date);
-
-        assertEquals(ld, localDate);
-        assertThrows(DateTimeParseException.class, () -> LocalDate.parse("abc"));
-        assertNotEquals(ld2, localDate);
-    }
-
 }

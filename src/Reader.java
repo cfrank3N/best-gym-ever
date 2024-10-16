@@ -30,13 +30,4 @@ public class Reader {
         }
         return s;
     }
-
-    //Kastar vidare PatternSyntaxException om delimitern är felaktig
-    public String[] splitString(String s, String delimiter) throws PatternSyntaxException {
-        return s.split(delimiter);
-    }
-
-    public LocalDate parseStringToDate(String date) throws DateTimeParseException {
-        return LocalDate.parse(date);
-    }
 }

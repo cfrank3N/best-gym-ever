@@ -3,12 +3,13 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.regex.PatternSyntaxException;
 
 public class SaveData {
 
     private List <Person> persons = new LinkedList<>();
     private List <String> fileData = new LinkedList<>();
-    private final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private final DateTimeFormatter DTF = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private final Reader read;
     private final Writer write;
 
@@ -18,7 +19,12 @@ public class SaveData {
 
         saveDataFromFile();
         savePersons();
+    }
 
+    //Used for tests
+    public SaveData(String readFrom, String writeTo, boolean test) {
+        this.read = new Reader(readFrom);
+        this.write = new Writer(writeTo);
     }
 
     public void saveDataFromFile() {
@@ -29,9 +35,9 @@ public class SaveData {
         for (int i = 0; i < fileData.size() - 1; i += 2) {
             Person p = new Person();
 
-            String[] socialSecAndName = read.splitString(fileData.get(i), ", ");
+            String[] socialSecAndName = splitString(fileData.get(i), ", ");
 
-            p.setDateOfPayment(read.parseStringToDate(fileData.get(i + 1)));
+            p.setDateOfPayment(parseStringToDate(fileData.get(i + 1)));
 
             p.setName(socialSecAndName[1]);
 
@@ -42,7 +48,7 @@ public class SaveData {
     }
 
     private String getTodaysDateString() {
-        return LocalDate.now().format(dtf);
+        return LocalDate.now().format(DTF);
     }
 
     //TODO: Skriv en metod som skriver en person till fil
@@ -51,6 +57,16 @@ public class SaveData {
                 p.getName(), "Personnummer:", p.getSocialSecNumber(), "Datum för besök:", getTodaysDateString());
 
         write.writeToFile(toWrite);
+    }
+
+    //TODO: Kanske ändra detta?
+    //Kastar vidare PatternSyntaxException om delimitern är felaktig
+    public String[] splitString(String s, String delimiter) throws PatternSyntaxException {
+        return s.split(delimiter);
+    }
+
+    public LocalDate parseStringToDate(String date) throws DateTimeParseException {
+        return LocalDate.parse(date);
     }
 
     public List<Person> getPersons() {
