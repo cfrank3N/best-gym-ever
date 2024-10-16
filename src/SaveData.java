@@ -28,6 +28,9 @@ public class SaveData {
         }
     }
 
+    //TODO: Skriv en metod som skriver en person till fil
+    //pw.println(String.format("Namn: %s Personnummer: %s Datum för besök: %s", p.getName(), p.getSocialSecNumber(), getTodaysDateString()));
+
     public List<Person> getPersons() {
         return persons;
     }
