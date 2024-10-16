@@ -4,14 +4,18 @@ import java.time.LocalDateTime;
 public class Person {
     //Skapa nya personer av värdena som läses in från filen
     //Spara dessa värden i en Lista av Personer som går att söka i
-    private int socialSecNumber;
+    private String socialSecNumber;
     private String name;
     private LocalDate dateOfPayment;
 
-    public Person(int socialSecNumber, String name, LocalDate dateOfPayment) {
+    public Person(String socialSecNumber, String name, LocalDate dateOfPayment) {
         this.socialSecNumber = socialSecNumber;
         this.name = name;
         this.dateOfPayment = dateOfPayment;
+    }
+
+    public Person() {
+
     }
 
     public LocalDate getDateOfPayment() {
@@ -22,11 +26,11 @@ public class Person {
         this.dateOfPayment = dateOfPayment;
     }
 
-    public int getSocialSecNumber() {
+    public String getSocialSecNumber() {
         return socialSecNumber;
     }
 
-    public void setSocialSecNumber(int socialSecNumber) {
+    public void setSocialSecNumber(String socialSecNumber) {
         this.socialSecNumber = socialSecNumber;
     }
 
@@ -36,5 +40,14 @@ public class Person {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "socialSecNumber='" + socialSecNumber + '\'' +
+                ", name='" + name + '\'' +
+                ", dateOfPayment=" + dateOfPayment +
+                '}';
     }
 }
