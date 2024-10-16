@@ -12,7 +12,7 @@ public class ComparerTest {
     @Test
     public void testCompareDates() {
 
-        //Skapa upp ett objekt som formaterar om ett satum till yyyy-MM-dd
+        //Skapa upp ett objekt som formaterar om ett datum till yyyy-MM-dd
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         //Skapa upp datum att testa med
         LocalDate ld1 =

@@ -15,7 +15,6 @@ public class Writer {
     public void writeToFile(String s) {
         try (PrintWriter pw = new PrintWriter(new FileOutputStream(file, true))) {
             pw.println(s);
-            //pw.println(String.format("Namn: %s Personnummer: %s Datum för besök: %s", p.getName(), p.getSocialSecNumber(), getTodaysDateString()));
         } catch (IOException e) {
             System.err.println("Can't find file " + file);
         } catch (Exception e) {

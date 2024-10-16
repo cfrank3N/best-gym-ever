@@ -1,11 +1,8 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.regex.PatternSyntaxException;
 
 public class Reader {
 
