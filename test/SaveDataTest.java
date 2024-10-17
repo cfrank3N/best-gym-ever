@@ -14,6 +14,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SaveDataTest {
 
+    LocalDate ld1 = LocalDate.of(2024, 7, 1);
+    LocalDate ld2 = LocalDate.of(2019, 12, 2);
+    LocalDate ld3 = LocalDate.of(2018, 3, 12);
+    Person p1 = new Person("7703021234", "Alhambra Aromes", ld1);
+    Person p2 = new Person("8204021234", "Bear Belle", ld2);
+    Person p3 = new Person("8512021234", "Chamade Coriola", ld3);
+    List<Person> expectedContent = Arrays.asList(p1, p2, p3);
     final String TEST_FILE_NAME_READ = "./test/data.txt";
     final String TEST_FILE_NAME_WRITE = "test.txt";
     SaveData save = new SaveData(TEST_FILE_NAME_READ, TEST_FILE_NAME_WRITE, true);
@@ -31,14 +38,6 @@ class SaveDataTest {
     @Test
     public void testSavePersons() {
 
-        LocalDate ld1 = LocalDate.of(2024, 7, 1);
-        LocalDate ld2 = LocalDate.of(2019, 12, 2);
-        LocalDate ld3 = LocalDate.of(2018, 3, 12);
-        Person p1 = new Person("7703021234", "Alhambra Aromes", ld1);
-        Person p2 = new Person("8204021234", "Bear Belle", ld2);
-        Person p3 = new Person("8512021234", "Chamade Coriola", ld3);
-        List<Person> expectedContent = Arrays.asList(p1, p2, p3);
-
         save.saveDataFromFile();
         save.savePersons();
 
@@ -51,6 +50,20 @@ class SaveDataTest {
             System.out.println(expectedContent.get(count));
             count++;
         }
+    }
+
+
+    //TODO: Fortsätt testa denna
+    @Test
+    public void testWritePersonToFile() {
+        save.saveDataFromFile();
+        save.savePersons();
+
+        for (Person p : save.getPersons()) {
+            save.writePersonToFile(p);
+        }
+
+
     }
 
     @Test

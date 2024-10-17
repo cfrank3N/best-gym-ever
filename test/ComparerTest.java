@@ -29,5 +29,4 @@ public class ComparerTest {
         assertFalse(c.dateIsLessThanAYearAgo(ld3));
 
     }
-
 }

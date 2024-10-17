@@ -51,7 +51,6 @@ public class SaveData {
         return LocalDate.now().format(DTF);
     }
 
-    //TODO: Skriv en metod som skriver en person till fil
     public void writePersonToFile(Person p) {
         String toWrite = String.format("%-7s %-18s %-15s %-13s %-18s %-15s", "Namn:",
                 p.getName(), "Personnummer:", p.getSocialSecNumber(), "Datum för besök:", getTodaysDateString());

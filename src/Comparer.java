@@ -15,5 +15,4 @@ public class Comparer {
         //returnera sant om dateToCheck är efter dagens datum minus ett år.
         return aYearAgo.isBefore(dateToCheck);
     }
-
 }
