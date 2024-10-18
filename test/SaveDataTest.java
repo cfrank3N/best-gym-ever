@@ -1,3 +1,4 @@
+import exceptions.BestGymException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
@@ -36,7 +37,7 @@ class SaveDataTest {
     }
 
     @Test
-    public void testSavePersons() {
+    public void testSavePersons() throws BestGymException {
 
         save.saveDataFromFile();
         save.savePersons();

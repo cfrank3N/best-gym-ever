@@ -1,5 +1,10 @@
-import org.junit.jupiter.api.*;
+package inputoutput;
 
+import exceptions.BestGymException;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
+
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -7,7 +12,7 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertIterableEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class WriterTest {
 
@@ -26,9 +31,9 @@ public class WriterTest {
     }
 
     @Test
-    public void testWriteToNewFile() {
+    public void testWriteToNewFile() throws BestGymException {
 
-        List <String> expectedContent = Arrays.asList("Hej", "Hejdå", "Felix");
+        List<String> expectedContent = Arrays.asList("Hej", "Hejdå", "Felix");
 
         w.writeToFile("Hej");
         w.writeToFile("Hejdå");
@@ -37,5 +42,13 @@ public class WriterTest {
         List<String> written = r.readFromFile();
 
         assertIterableEquals(written, expectedContent);
+    }
+
+    @Test
+    public void testWriteToInvalidPathShouldThrow() {
+
+        Writer write = new Writer("mappsomintefinns/hej.txt");
+        BestGymException e = assertThrows(BestGymException.class, () -> write.writeToFile("Test failed"));
+        assertEquals(FileNotFoundException.class, e.getCause().getClass());
     }
 }

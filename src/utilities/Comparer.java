@@ -1,10 +1,14 @@
+package utilities;
+
+import exceptions.BestGymException;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class Comparer {
 
-    public boolean dateIsLessThanAYearAgo(LocalDate dateToCheck) throws DateTimeParseException {
+    public static boolean dateIsLessThanAYearAgo(LocalDate dateToCheck) throws BestGymException {
 
         //Skapa en formaterare som formaterar dagens datum så att det blir 20XX-XX-XX
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");

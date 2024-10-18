@@ -1,3 +1,6 @@
+package utilities;
+
+import exceptions.BestGymException;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -10,7 +13,7 @@ public class ComparerTest {
     Comparer c = new Comparer();
 
     @Test
-    public void testCompareDates() {
+    public void testCompareDates() throws BestGymException {
 
         //Skapa upp ett objekt som formaterar om ett datum till yyyy-MM-dd
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");

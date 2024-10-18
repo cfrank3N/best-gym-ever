@@ -1,3 +1,8 @@
+import exceptions.BestGymException;
+import inputoutput.Reader;
+import inputoutput.Writer;
+import utilities.Comparer;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -8,18 +13,15 @@ import java.util.regex.PatternSyntaxException;
 
 public class SaveData {
 
-    private List <Person> persons = new LinkedList<>();
-    private List <String> fileData = new LinkedList<>();
-    private final DateTimeFormatter DTF = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm");
+    private final DateTimeFormatter DTF = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     private final Reader read;
     private final Writer write;
+    private List<Person> persons = new LinkedList<>();
+    private List<String> fileData = new LinkedList<>();
 
     public SaveData(String readFrom, String writeTo) {
         this.read = new Reader(readFrom);
         this.write = new Writer(writeTo);
-
-        saveDataFromFile();
-        savePersons();
     }
 
     //Used for tests
@@ -28,13 +30,37 @@ public class SaveData {
         this.write = new Writer(writeTo);
     }
 
+    public void initDatabase() throws BestGymException {
+        saveDataFromFile();
+        savePersons();
+    }
 
+    public void searchForMember(String personInfo) throws BestGymException {
+        boolean foundPerson = false;
+        for (Person p : getPersons()) {
+            if (p.getName().equalsIgnoreCase(personInfo) || p.getSocialSecNumber().equalsIgnoreCase(personInfo)) {
+                foundPerson = true;
+                if (Comparer.dateIsLessThanAYearAgo(p.getDateOfPayment())) {
+                    System.out.println(p.getName() + " is a current member. They purchased their membership: " + p.getDateOfPayment());
+                    writePersonToFile(p);
+                    System.out.println("Saved person info in Private trainers file: " + write.getFile());
 
-    public void saveDataFromFile() {
+                } else {
+                    System.out.println(p.getName() + " is a former member. They purchased their membership: " + p.getDateOfPayment());
+                }
+                break;
+            }
+        }
+        if (!foundPerson) {
+            System.out.println("This person is not a customer");
+        }
+    }
+
+    public void saveDataFromFile() throws BestGymException {
         setFileData(read.readFromFile());
     }
 
-    public void savePersons() throws DateTimeParseException {
+    public void savePersons() throws BestGymException {
         try {
             for (int i = 0; i < fileData.size() - 1; i += 2) {
                 Person p = new Person();
@@ -44,14 +70,12 @@ public class SaveData {
                 p.setSocialSecNumber(socialSecAndName[0]);
                 persons.add(p);
             }
-        } catch (IndexOutOfBoundsException e) {
-            System.err.println("Index for Array is out of bounds");
         } catch (DateTimeParseException e) {
-            System.err.println("Illegal format for a date");
+            throw new BestGymException("Illegal format for a date", e);
         } catch (PatternSyntaxException e) {
-            System.err.println("Illegal delimiter");
+            throw new BestGymException("Illegal delimiter", e);
         } catch (Exception e) {
-            System.err.println("Unexpected Error!");
+            throw new BestGymException("Unexpected Error!", e);
         }
     }
 
@@ -59,7 +83,7 @@ public class SaveData {
         return LocalDateTime.now().format(DTF);
     }
 
-    public void writePersonToFile(Person p) {
+    public void writePersonToFile(Person p) throws BestGymException {
         String toWrite = String.format("%-7s %-18s %-16s %-13s %-27s %s", "Namn:",
                 p.getName(), "Personnummer:", p.getSocialSecNumber(), "Datum och tid för besök:", getTodaysDateString());
 

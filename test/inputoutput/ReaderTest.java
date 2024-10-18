@@ -1,5 +1,9 @@
+package inputoutput;
+
+import exceptions.BestGymException;
 import org.junit.jupiter.api.Test;
 
+import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,7 +14,7 @@ public class ReaderTest {
     Reader r = new Reader("./test/data.txt");
 
     @Test
-    public void testFromFile() {
+    public void testFromFile() throws BestGymException {
         //Creates a list of expected content to compare to the returned list from the readFromFile method.
         List <String> expectedContent = Arrays.asList("7703021234, Alhambra Aromes",
                 "2024-07-01",
@@ -24,4 +28,13 @@ public class ReaderTest {
         assertIterableEquals(s, expectedContent);
         assertIterableEquals(expectedContent, s);
     }
+
+    @Test
+    public void testReadFromNonExistingFile() {
+        Reader read = new Reader("nonexistingpath/tja.md");
+
+        BestGymException e = assertThrows(BestGymException.class, read::readFromFile);
+        assertEquals(FileNotFoundException.class, e.getCause().getClass());
+    }
+
 }

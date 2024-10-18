@@ -1,3 +1,6 @@
+package inputoutput;
+
+import exceptions.BestGymException;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -7,7 +10,7 @@ import java.io.InputStream;
 public class InputTest {
 
     @Test
-    void testUserInput() {
+    void testUserInput() throws BestGymException {
         // Simulate user input
         //Change Systems InputStream in to a ByteArrayInputStream instead
         String simulatedInput = "Test passed!";
@@ -15,12 +18,24 @@ public class InputTest {
         ByteArrayInputStream simulatedIn = new ByteArrayInputStream(simulatedInput.getBytes());
         System.setIn(simulatedIn); //Change System.in to System.simulatedIn
 
-        Input input = new Input();
-        String result = input.getUserInput("Write: Test passed!");
+        String result = Input.getUserInput("Write: Test passed!");
 
         assertEquals("Test passed!", result);
         assertNotEquals("Test failed!", result);
 
         System.setIn(originalIn); //Restore System.in
     }
+
+    @Test
+    public void testThrowsException() {
+        InputStream originalIn = System.in;
+        System.setIn(null); //Change System.in to System.simulatedIn
+
+        assertThrows(BestGymException.class, () -> Input.getUserInput("Write: Test passed!"));
+
+        System.setIn(originalIn); //Restore System.in
+    }
+
+
+
 }
