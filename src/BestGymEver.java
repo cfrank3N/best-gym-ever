@@ -1,6 +1,8 @@
 import exceptions.BestGymException;
 import inputoutput.Input;
 
+import static inputoutput.Input.getUserInput;
+
 public class BestGymEver {
 
     public BestGymEver() {
@@ -10,7 +12,9 @@ public class BestGymEver {
 
         while (true) {
             try {
-                String searchFor = Input.getUserInput(message);
+                saveData.saveDataFromFile();
+                saveData.savePersons();
+                String searchFor = getUserInput(message);
                 saveData.searchForMember(searchFor);
             } catch (BestGymException e) {
                 System.err.println(e.getMessage());
