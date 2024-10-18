@@ -50,28 +50,8 @@ class SaveDataTest {
             System.out.println(expectedContent.get(count));
             count++;
         }
-    }
-
-
-    //TODO: Fortsätt testa denna
-    @Test
-    public void testWritePersonToFile() {
-        save.saveDataFromFile();
-        save.savePersons();
-
-        for (Person p : save.getPersons()) {
-            save.writePersonToFile(p);
-        }
-
-
-    }
-
-    @Test
-    public void testSplitString() {
-        String[] expectedContent = {"7703021234", "Alhambra Aromes"};
-        String[] s = save.splitString("7703021234, Alhambra Aromes", ", ");
-
-        assertArrayEquals(s, expectedContent);
+        assertEquals(3, save.getPersons().size());
+        assertNotEquals(2, save.getPersons().size());
     }
 
     @Test

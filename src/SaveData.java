@@ -33,13 +33,23 @@ public class SaveData {
     }
 
     public void savePersons() throws DateTimeParseException {
-        for (int i = 0; i < fileData.size() - 1; i += 2) {
-            Person p = new Person();
-            String[] socialSecAndName = splitString(fileData.get(i), ", ");
-            p.setDateOfPayment(parseStringToDate(fileData.get(i + 1)));
-            p.setName(socialSecAndName[1]);
-            p.setSocialSecNumber(socialSecAndName[0]);
-            persons.add(p);
+        try {
+            for (int i = 0; i < fileData.size() - 1; i += 2) {
+                Person p = new Person();
+                String[] socialSecAndName = fileData.get(i).split(", ");
+                p.setDateOfPayment(parseStringToDate(fileData.get(i + 1)));
+                p.setName(socialSecAndName[1]);
+                p.setSocialSecNumber(socialSecAndName[0]);
+                persons.add(p);
+            }
+        } catch (IndexOutOfBoundsException e) {
+            System.err.println("Index for Array is out of bounds");
+        } catch (DateTimeParseException e) {
+            System.err.println("Illegal format for a date");
+        } catch (PatternSyntaxException e) {
+            System.err.println("Illegal delimiter");
+        } catch (Exception e) {
+            System.err.println("Unexpected Error!");
         }
     }
 
@@ -52,12 +62,6 @@ public class SaveData {
                 p.getName(), "Personnummer:", p.getSocialSecNumber(), "Datum och tid för besök:", getTodaysDateString());
 
         write.writeToFile(toWrite);
-    }
-
-    //TODO: Kanske ändra detta?
-    //Kastar vidare PatternSyntaxException om delimitern är felaktig
-    public String[] splitString(String s, String delimiter) throws PatternSyntaxException {
-        return s.split(delimiter);
     }
 
     public LocalDate parseStringToDate(String date) throws DateTimeParseException {

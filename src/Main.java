@@ -4,6 +4,9 @@ public class Main {
         SaveData saveData = new SaveData("./src/data.txt", "visit_log.txt");
         Comparer c = new Comparer();
 
+        for (Person p : saveData.getPersons()) {
+            saveData.writePersonToFile(p);
+        }
 
         Input input = new Input();
 
