@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.LinkedList;
@@ -9,7 +10,7 @@ public class SaveData {
 
     private List <Person> persons = new LinkedList<>();
     private List <String> fileData = new LinkedList<>();
-    private final DateTimeFormatter DTF = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private final DateTimeFormatter DTF = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm");
     private final Reader read;
     private final Writer write;
 
@@ -34,26 +35,21 @@ public class SaveData {
     public void savePersons() throws DateTimeParseException {
         for (int i = 0; i < fileData.size() - 1; i += 2) {
             Person p = new Person();
-
             String[] socialSecAndName = splitString(fileData.get(i), ", ");
-
             p.setDateOfPayment(parseStringToDate(fileData.get(i + 1)));
-
             p.setName(socialSecAndName[1]);
-
             p.setSocialSecNumber(socialSecAndName[0]);
-
             persons.add(p);
         }
     }
 
     private String getTodaysDateString() {
-        return LocalDate.now().format(DTF);
+        return LocalDateTime.now().format(DTF);
     }
 
     public void writePersonToFile(Person p) {
-        String toWrite = String.format("%-7s %-18s %-15s %-13s %-18s %-15s", "Namn:",
-                p.getName(), "Personnummer:", p.getSocialSecNumber(), "Datum för besök:", getTodaysDateString());
+        String toWrite = String.format("%-7s %-18s %-16s %-13s %-27s %s", "Namn:",
+                p.getName(), "Personnummer:", p.getSocialSecNumber(), "Datum och tid för besök:", getTodaysDateString());
 
         write.writeToFile(toWrite);
     }
