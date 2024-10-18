@@ -11,6 +11,8 @@ public class Main {
         Input input = new Input();
 
         String s = input.getUserInput("Skriv in Personnummer eller Namn på personen du söker:");
+        String s1 = input.getUserInput("Skriv in Personnummer eller Namn på personen du söker:");
+        System.out.println(s1);
 
         //TODO: skriv om detta till metoder. Vart de ska läggas vettetusan
         //public String/void isMember(String personInfo)

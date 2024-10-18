@@ -28,6 +28,8 @@ public class SaveData {
         this.write = new Writer(writeTo);
     }
 
+
+
     public void saveDataFromFile() {
         setFileData(read.readFromFile());
     }
