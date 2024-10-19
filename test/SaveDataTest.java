@@ -24,7 +24,7 @@ class SaveDataTest {
     List<Person> expectedContent = Arrays.asList(p1, p2, p3);
     final String TEST_FILE_NAME_READ = "./test/data.txt";
     final String TEST_FILE_NAME_WRITE = "test.txt";
-    SaveData save = new SaveData(TEST_FILE_NAME_READ, TEST_FILE_NAME_WRITE, true);
+    SaveData save = new SaveData(TEST_FILE_NAME_READ, TEST_FILE_NAME_WRITE);
 
     @AfterEach
     public void cleanUp() {
@@ -57,7 +57,7 @@ class SaveDataTest {
 
     @Test
     public void testSavePersonsThrowsException() throws BestGymException {
-        SaveData save = new SaveData("./test/faultydata.txt", TEST_FILE_NAME_WRITE, true);
+        SaveData save = new SaveData("./test/faultydata.txt", TEST_FILE_NAME_WRITE);
 
         save.saveDataFromFile();
         BestGymException e = assertThrows(BestGymException.class, save::savePersons);

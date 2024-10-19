@@ -24,12 +24,6 @@ public class SaveData {
         this.write = new Writer(writeTo);
     }
 
-    //Used for tests
-    public SaveData(String readFrom, String writeTo, boolean test) {
-        this.read = new Reader(readFrom);
-        this.write = new Writer(writeTo);
-    }
-
     public void initDatabase() throws BestGymException {
         saveDataFromFile();
         savePersons();
