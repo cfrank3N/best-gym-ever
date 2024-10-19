@@ -99,19 +99,11 @@ public class SaveData {
         this.persons = persons;
     }
 
-    public List<String> getFileData() {
-        return fileData;
-    }
-
     public void setFileData(List<String> fileData) {
         if (fileData.isEmpty()) {
             System.out.println("List is empty, check the file too see that it's not empty");
         } else {
             this.fileData = fileData;
         }
-    }
-
-    public Reader getRead() {
-        return read;
     }
 }
