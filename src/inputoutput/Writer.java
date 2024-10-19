@@ -18,7 +18,7 @@ public class Writer {
         try (PrintWriter pw = new PrintWriter(new FileOutputStream(file, true))) {
             pw.println(textToWrite);
         } catch (IOException e) {
-            throw new BestGymException("Can't find file " + file, e);
+            throw new BestGymException("Can't find " + file + ", supply a new filepath", e);
         } catch (Exception e) {
             throw new BestGymException("Unknown error occurred", e);
         }

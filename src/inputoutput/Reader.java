@@ -25,7 +25,7 @@ public class Reader {
                 s.add(scan.nextLine().trim());
             }
         } catch (FileNotFoundException e) {
-            throw new BestGymException("Can't find file, supply a new filepath", e);
+            throw new BestGymException("Can't find " + file + ", supply a new filepath", e);
         } catch (Exception e) {
             throw new BestGymException("Unexpected Error", e);
         }
