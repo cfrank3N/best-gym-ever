@@ -26,16 +26,17 @@ public class BestGymEver {
                     fileToReadFrom = Input.getUserInput(messageFromFile, scan);
                     fileToWriteTo = Input.getUserInput(messageToFile, scan);
                 }
+
+                SaveData saveData = new SaveData(fileToReadFrom, fileToWriteTo);
+
+                saveData.initDatabase();
+
                 String searchFor = getUserInput(messageSearchCustomer, scan);
 
                 if (searchFor.equalsIgnoreCase("exit")) {
                     scan.close();
                     System.exit(0);
                 }
-                SaveData saveData = new SaveData(fileToReadFrom, fileToWriteTo);
-
-                saveData.initDatabase();
-
                 saveData.searchForMember(searchFor);
                 firstIteration = false;
             } catch (BestGymException e) {

@@ -56,6 +56,15 @@ class SaveDataTest {
     }
 
     @Test
+    public void testSavePersonsThrowsException() throws BestGymException {
+        SaveData save = new SaveData("./test/faultydata.txt", TEST_FILE_NAME_WRITE, true);
+
+        save.saveDataFromFile();
+        BestGymException e = assertThrows(BestGymException.class, save::savePersons);
+        System.err.println(e.getMessage());
+    }
+
+    @Test
     public void testParseStringToDate() {
 
         LocalDate ld = LocalDate.of(2024, 8, 4);

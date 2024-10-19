@@ -10,11 +10,11 @@ public class Input {
     public static String getUserInput(String message, Scanner scanner) throws BestGymException {
         while (true) {
             try {
-                Scanner userInput = new Scanner(System.in);
+
                 String toReturn;
 
                 System.out.println(message);
-                toReturn = userInput.nextLine().trim();
+                toReturn = scanner.nextLine().trim();
                 if (toReturn.isEmpty()) {
                     System.err.println("Input can't be empty. Try again");
                 } else {
