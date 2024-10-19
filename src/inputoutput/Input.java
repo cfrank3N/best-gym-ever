@@ -6,8 +6,8 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Input {
-    //TODO: Skriv om denna kanske?
-    public static String getUserInput(String message) throws BestGymException {
+
+    public static String getUserInput(String message, Scanner scanner) throws BestGymException {
         while (true) {
             try {
                 Scanner userInput = new Scanner(System.in);
