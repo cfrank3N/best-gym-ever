@@ -10,8 +10,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ComparerTest {
 
-    Comparer c = new Comparer();
-
     @Test
     public void testCompareDates() throws BestGymException {
 
@@ -27,9 +25,9 @@ public class ComparerTest {
         LocalDate ld3 =
                 LocalDate.parse(LocalDate.now().minusYears(1).format(dtf));
 
-        assertTrue(c.dateIsLessThanAYearAgo(ld1));
-        assertFalse(c.dateIsLessThanAYearAgo(ld2));
-        assertFalse(c.dateIsLessThanAYearAgo(ld3));
+        assertTrue(Comparer.dateIsLessThanAYearAgo(ld1));
+        assertFalse(Comparer.dateIsLessThanAYearAgo(ld2));
+        assertFalse(Comparer.dateIsLessThanAYearAgo(ld3));
 
     }
 }

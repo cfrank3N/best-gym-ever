@@ -22,6 +22,7 @@ public class Input {
                 }
             } catch (NoSuchElementException e) {
                 System.err.println("Input can't be empty. Try again");
+
             } catch (Exception e) {
                 throw new BestGymException("Unexpected error occurred", e);
             }
