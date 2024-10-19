@@ -1,3 +1,6 @@
+package main;
+
+import database.SaveData;
 import exceptions.BestGymException;
 import inputoutput.Input;
 

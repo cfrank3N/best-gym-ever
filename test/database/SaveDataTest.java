@@ -1,6 +1,9 @@
+package database;
+
 import exceptions.BestGymException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import persons.Person;
 
 import java.io.IOException;
 import java.nio.file.Files;

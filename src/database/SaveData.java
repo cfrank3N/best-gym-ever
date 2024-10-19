@@ -1,6 +1,9 @@
+package database;
+
 import exceptions.BestGymException;
 import inputoutput.Reader;
 import inputoutput.Writer;
+import persons.Person;
 import utilities.Comparer;
 
 import java.time.LocalDate;
