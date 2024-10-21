@@ -2,7 +2,6 @@ package main;
 
 import database.SaveData;
 import exceptions.BestGymException;
-import inputoutput.Input;
 
 import static inputoutput.Input.getUserInput;
 import static utilities.Messages.*;
@@ -22,8 +21,8 @@ public class BestGymEver {
             try {
 
                 if (firstIteration) {
-                    fileToReadFrom = Input.getUserInput(getMessageFromFile());
-                    fileToWriteTo = Input.getUserInput(getMessageToFile());
+                    fileToReadFrom = getUserInput(getMessageFromFile());
+                    fileToWriteTo = getUserInput(getMessageToFile());
                 }
 
                 SaveData saveData = new SaveData(fileToReadFrom, fileToWriteTo); //Create database
@@ -33,9 +32,9 @@ public class BestGymEver {
                 if (searchFor.equalsIgnoreCase("exit")) {
                     break;
                 }
-                firstIteration = false;
 
                 saveData.searchForMember(searchFor); //Search for customer, print out message(current, former, not found)
+                firstIteration = false;
 
             } catch (BestGymException e) {
                 System.err.println(e.getMessage());

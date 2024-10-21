@@ -10,3 +10,6 @@ Namn:   Greger Ganache     Personnummer:    7512166544    Datum och tid för bes
 Namn:   Alhambra Aromes    Personnummer:    7703021234    Datum och tid för besök:    2024-10-19 17:45
 Namn:   Alhambra Aromes    Personnummer:    7703021234    Datum och tid för besök:    2024-10-20 15:01
 Namn:   Alhambra Aromes    Personnummer:    7703021234    Datum och tid för besök:    2024-10-21 12:43
+Namn:   Alhambra Aromes    Personnummer:    7703021234    Datum och tid för besök:    2024-10-21 14:35
+Namn:   Nahema Ninsson     Personnummer:    7805211234    Datum och tid för besök:    2024-10-21 14:35
+Namn:   Alhambra Aromes    Personnummer:    7703021234    Datum och tid för besök:    2024-10-21 15:02

@@ -6,7 +6,6 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Input {
-
     public static String getUserInput(String message) throws BestGymException {
         while (true) {
             try {
@@ -25,7 +24,6 @@ public class Input {
                 }
             } catch (NoSuchElementException e) {
                 System.err.println("Input can't be empty. Try again");
-
             } catch (Exception e) {
                 throw new BestGymException("Unexpected error occurred", e);
             }
