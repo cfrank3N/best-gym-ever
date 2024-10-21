@@ -77,7 +77,11 @@ class SaveDataTest {
         LocalDate localDate = save.parseStringToDate(date);
 
         assertEquals(ld, localDate);
-        assertThrows(DateTimeParseException.class, () -> save.parseStringToDate("ghjki"));
         assertNotEquals(ld2, localDate);
+    }
+
+    @Test
+    public void testParseStringToDateThrowsException() {
+        assertThrows(DateTimeParseException.class, () -> save.parseStringToDate("ghjki"));
     }
 }
