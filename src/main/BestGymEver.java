@@ -4,47 +4,48 @@ import database.SaveData;
 import exceptions.BestGymException;
 import inputoutput.Input;
 
-import java.util.Scanner;
-
 import static inputoutput.Input.getUserInput;
+import static utilities.Messages.*;
 
 public class BestGymEver {
-    public static void main(String[] args) {
 
-        Scanner scan = new Scanner(System.in);
+    private boolean firstIteration = true;
+    private String fileToReadFrom;
+    private String fileToWriteTo;
 
-        boolean firstIteration = true;
+    public BestGymEver() {
 
-        String messageFromFile = "Supply a filepath to gather customer data from:";
-        String messageToFile = "Supply a filepath where visitors a logged an saved:";
-        String messageSearchCustomer = "Write the name or social security number of the person to search for them in the database of customers:";
-
-        String fileToReadFrom = "";
-        String fileToWriteTo = "";
+        System.out.println(getWelcomeMessage());
+        System.out.println(getShrek());
 
         while (true) {
             try {
 
                 if (firstIteration) {
-                    fileToReadFrom = Input.getUserInput(messageFromFile, scan);
-                    fileToWriteTo = Input.getUserInput(messageToFile, scan);
+                    fileToReadFrom = Input.getUserInput(getMessageFromFile());
+                    fileToWriteTo = Input.getUserInput(getMessageToFile());
                 }
 
-                SaveData saveData = new SaveData(fileToReadFrom, fileToWriteTo);
-
-                saveData.initDatabase();
-
-                String searchFor = getUserInput(messageSearchCustomer, scan);
+                SaveData saveData = new SaveData(fileToReadFrom, fileToWriteTo); //Create database
+                saveData.initDatabase(); //Initialize Database containing info from the file it's reading from
+                String searchFor = getUserInput(getMessageSearchCustomer());
 
                 if (searchFor.equalsIgnoreCase("exit")) {
-                    scan.close();
-                    System.exit(0);
+                    break;
                 }
-                saveData.searchForMember(searchFor);
                 firstIteration = false;
+
+                saveData.searchForMember(searchFor); //Search for customer, print out message(current, former, not found)
+
             } catch (BestGymException e) {
                 System.err.println(e.getMessage());
             }
         }
+    }
+
+    public static void main(String[] args) {
+
+        BestGymEver bge = new BestGymEver();
+
     }
 }

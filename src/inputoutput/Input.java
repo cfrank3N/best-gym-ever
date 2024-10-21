@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Input {
 
-    public static String getUserInput(String message, boolean isTest) throws BestGymException {
+    public static String getUserInput(String message) throws BestGymException {
         while (true) {
             try {
                 Scanner scanner = new Scanner(System.in);
@@ -17,6 +17,9 @@ public class Input {
                 toReturn = scanner.nextLine().trim();
                 if (toReturn.isEmpty()) {
                     System.err.println("Input can't be empty. Try again");
+                } else if (toReturn.equalsIgnoreCase("exit")){
+                    scanner.close();
+                    System.exit(0);
                 } else {
                     return toReturn;
                 }
