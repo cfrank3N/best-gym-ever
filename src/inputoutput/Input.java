@@ -7,10 +7,10 @@ import java.util.Scanner;
 
 public class Input {
 
-    public static String getUserInput(String message, Scanner scanner) throws BestGymException {
+    public static String getUserInput(String message, boolean isTest) throws BestGymException {
         while (true) {
             try {
-
+                Scanner scanner = new Scanner(System.in);
                 String toReturn;
 
                 System.out.println(message);

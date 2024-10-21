@@ -18,6 +18,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SaveDataTest {
 
+    final String TEST_FILE_NAME_READ = "./test/data.txt";
+    final String TEST_FILE_NAME_WRITE = "test.txt";
     LocalDate ld1 = LocalDate.of(2024, 7, 1);
     LocalDate ld2 = LocalDate.of(2019, 12, 2);
     LocalDate ld3 = LocalDate.of(2018, 3, 12);
@@ -25,8 +27,6 @@ class SaveDataTest {
     Person p2 = new Person("8204021234", "Bear Belle", ld2);
     Person p3 = new Person("8512021234", "Chamade Coriola", ld3);
     List<Person> expectedContent = Arrays.asList(p1, p2, p3);
-    final String TEST_FILE_NAME_READ = "./test/data.txt";
-    final String TEST_FILE_NAME_WRITE = "test.txt";
     SaveData save = new SaveData(TEST_FILE_NAME_READ, TEST_FILE_NAME_WRITE);
 
     @AfterEach
@@ -82,6 +82,8 @@ class SaveDataTest {
 
     @Test
     public void testParseStringToDateThrowsException() {
+
         assertThrows(DateTimeParseException.class, () -> save.parseStringToDate("ghjki"));
+
     }
 }
