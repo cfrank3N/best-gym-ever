@@ -68,11 +68,11 @@ public class SaveData {
                 persons.add(p);
             }
         } catch (DateTimeParseException e) {
-            throw new BestGymException("Illegal format for a date", e);
+            throw new BestGymException("Illegal format for a date! Check that the file you read from has correct formatting", e);
         } catch (PatternSyntaxException e) {
             throw new BestGymException("Illegal delimiter", e);
         } catch (Exception e) {
-            throw new BestGymException("Unexpected Error!", e);
+            throw new BestGymException("Unexpected Error! Check that the file you read from has correct formatting", e);
         }
     }
 
